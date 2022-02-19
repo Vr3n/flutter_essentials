@@ -7,22 +7,53 @@ void main() {
   // --> Widget App
   // --> Cupertino App
   runApp(MaterialApp(
-      home: HomePage(), theme: ThemeData(primarySwatch: Colors.orange)));
+      home: HomePage(),
+      title: 'Mr. Robot Wiki',
+      theme: ThemeData(primarySwatch: Colors.orange)));
 }
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text('Mr Robot Wiki'),
       ),
       body: Center(
-          child: Container(
-        width: 400,
-        height: 400,
-        color: Colors.black,
+          child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          child: Card(
+            child: Column(children: <Widget>[
+              Image.asset(
+                "assets/bg.jpg",
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Gaming",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter your name",
+                    labelText: "Name",
+                  ),
+                ),
+              )
+            ]),
+          ),
+        ),
       )),
+      // DRAWER
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
