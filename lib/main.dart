@@ -14,31 +14,55 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mr Robot Wiki'),
-      ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          width: 100,
-          height: 100,
-          clipBehavior: Clip.antiAlias,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.black, Colors.blue]),
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10)],
-          ),
-          child: Text(
-            'Elliot Alderson',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
+        appBar: AppBar(
+          title: Text('Mr Robot Wiki'),
         ),
-      ),
-    );
+        body: Container(
+            height: 500,
+            color: Colors.purple,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  width: 200,
+                  height: 200,
+                  color: Colors.blue,
+                  alignment: Alignment.center,
+                  child: Column(children: [
+                    Container(
+                      color: Colors.black,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Container(
+                      color: Colors.orange,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Container(
+                      color: Colors.pink,
+                      width: 50,
+                      height: 50,
+                    ),
+                  ]),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  width: 200,
+                  height: 200,
+                  color: Colors.yellow,
+                  alignment: Alignment.center,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  width: 200,
+                  height: 200,
+                  color: Colors.black,
+                  alignment: Alignment.center,
+                ),
+              ],
+            )));
   }
 }
