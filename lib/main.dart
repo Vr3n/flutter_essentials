@@ -14,55 +14,41 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Mr Robot Wiki'),
+      appBar: AppBar(
+        title: Text('Mr Robot Wiki'),
+      ),
+      body: Center(
+          child: Container(
+        width: 400,
+        height: 400,
+        color: Colors.black,
+      )),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Edward Alderson"),
+              accountEmail: Text("edward_alderson@fsociety.com"),
+              currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://static.wikia.nocookie.net/mrrobot/images/8/86/EdwardAlderson.jpg/revision/latest/top-crop/width/360/height/450?cb=20161117005643")),
+            ),
+            ListTile(
+              onTap: () {
+                print("Hello");
+              },
+              leading: Icon(Icons.person),
+              title: Text("Edward Alderson"),
+              subtitle: Text('Father of elliot (Mr. Robot)'),
+              trailing: Icon(Icons.edit),
+            )
+          ],
         ),
-        body: Container(
-            height: 500,
-            color: Colors.purple,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  width: 200,
-                  height: 200,
-                  color: Colors.blue,
-                  alignment: Alignment.center,
-                  child: Column(children: [
-                    Container(
-                      color: Colors.black,
-                      width: 50,
-                      height: 50,
-                    ),
-                    Container(
-                      color: Colors.orange,
-                      width: 50,
-                      height: 50,
-                    ),
-                    Container(
-                      color: Colors.pink,
-                      width: 50,
-                      height: 50,
-                    ),
-                  ]),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  width: 200,
-                  height: 200,
-                  color: Colors.yellow,
-                  alignment: Alignment.center,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  width: 200,
-                  height: 200,
-                  color: Colors.black,
-                  alignment: Alignment.center,
-                ),
-              ],
-            )));
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.edit),
+      ),
+    );
   }
 }
