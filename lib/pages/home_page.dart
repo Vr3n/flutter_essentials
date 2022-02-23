@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:essentials/drawer.dart';
-import 'package:essentials/nameCardWidget.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,24 +9,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var my_text = "Change my name";
-  TextEditingController _nameController = TextEditingController();
+  var url = Uri.parse("https://jsonplaceholder.typicode.com/photos/");
 
-  // Listening to changes.
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _nameController.addListener(_setLatestValue);
-  // }
+  var data;
 
-  // @override
-  // void dispose() {
-  //   _nameController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
 
-  void _setLatestValue() {
-    my_text = _nameController.text;
+  fetchData() async {
+    var res = await http.get(url);
+    data = jsonDecode(res.body);
     setState(() {});
   }
 
@@ -36,24 +32,24 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Mr Robot Wiki'),
       ),
-      body: Center(
-          child: Padding(
-        padding: EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: NameCardWidget(
-            my_text: my_text,
-            nameController: _nameController,
-            setLatestValue: _setLatestValue,
-          ),
-        ),
-      )),
+      body: data != null
+          ? ListView.builder(
+              itemBuilder: ((context, index) {
+                return ListTile(
+                  title: Text(data[index]['title']),
+                  subtitle: Text("ID: ${data[index]['id']}"),
+                  leading: Image.network(data[index]['url']),
+                );
+              }),
+              itemCount: data.length,
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
       // DRAWER
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          my_text = _nameController.text;
-          setState(() {});
-        },
+        onPressed: () {},
         child: Icon(Icons.send),
       ),
     );
